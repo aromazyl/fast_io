@@ -20,7 +20,6 @@ class FAST_IO_TEST : public testing::Test {
 
 TEST_F(FAST_IO_TEST, GetLine) {
   char* buf;
-  char pbuf[1000];
   int len;
   FILE* df = fopen("./TEST1", "w");
   while (stream.GetLine(&buf, &len)) {
