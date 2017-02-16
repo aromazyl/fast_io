@@ -18,6 +18,10 @@
 
 class LineStream {
   public:
+    static bool GetFolderFilesNames(
+        const std::string& folder, std::vector<std::string>* filenames);
+
+  public:
     LineStream();
     ~LineStream();
 

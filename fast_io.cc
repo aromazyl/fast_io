@@ -6,8 +6,25 @@
  */
 
 #include "fast_io.h"
+#include <dirent.h>
 #include <glog/logging.h>
 
+
+
+static bool LineStream::GetFolderFilesNames(
+    const std::string& folder, std::vector<std::string>* filenames) {
+  DIR *dir;
+  struct dirent *ent;
+  if ((dir = opendir (folder.c_str())) != NULL) {
+    while ((ent = readdir (dir)) != NULL) {
+      filenames->push_back(ent->d_name);
+    }
+    closedir (dir);
+  } else {
+    perror ((folder + "open failure").c_str());
+    return false;
+  }
+}
 
 LineStream::LineStream() {
   fd_ = NULL;
